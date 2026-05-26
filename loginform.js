@@ -52,11 +52,3 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
-/* =====================================
-   LOGOUT
-===================================== */
-function logout() {
-  localStorage.removeItem("logado");
-  localStorage.removeItem("tipoUsuario");
-  window.location.href = "index.html";
-}

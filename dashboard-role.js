@@ -1,38 +1,71 @@
 document.addEventListener("DOMContentLoaded", function () {
-  const loginScreen = document.getElementById("loginScreen");
-  const dashboard = document.getElementById("dashboard");
-
-  if (!loginScreen || !dashboard) return;
-
   const logado = localStorage.getItem("logado");
   const tipo = localStorage.getItem("tipoUsuario");
 
-  // Se não estiver logado, mantém login visível
+  const btnProfessor = document.getElementById("btnProfessor");
+  const btnAluno = document.getElementById("btnAluno");
+
+  const linkProfessorNav = document.getElementById("linkProfessorNav");
+  const linkAlunoNav = document.getElementById("linkAlunoNav");
+
+  // Se não estiver logado, mantém só a tela de login
+  const loginScreen = document.getElementById("loginScreen");
+  const dashboard = document.getElementById("dashboard");
+
   if (logado !== "true") {
-    loginScreen.style.display = "block";
-    dashboard.style.display = "none";
+    if (loginScreen && dashboard) {
+      loginScreen.style.display = "block";
+      dashboard.style.display = "none";
+    }
     return;
   }
 
-  // Se estiver logado, mostra o dashboard
-  loginScreen.style.display = "none";
-  dashboard.style.display = "block";
-
-  // MENU
-  const menuProfessor = document.getElementById("menuProfessor");
-  const menuAluno = document.getElementById("menuAluno");
-
-  // CARDS
-  const cardProfessor = document.getElementById("cardProfessor");
-  const cardAluno = document.getElementById("cardAluno");
-
-  if (tipo === "professor") {
-    if (menuAluno) menuAluno.style.display = "none";
-    if (cardAluno) cardAluno.style.display = "none";
+  if (loginScreen && dashboard) {
+    loginScreen.style.display = "none";
+    dashboard.style.display = "block";
   }
 
+  function bloquearBotao(botao) {
+    if (!botao) return;
+    botao.disabled = true;
+    botao.style.opacity = "0.5";
+    botao.style.cursor = "not-allowed";
+  }
+
+  function bloquearLink(link) {
+    if (!link) return;
+
+    // remove a navegação
+    link.removeAttribute("href");
+
+    // visual de desabilitado
+    link.style.opacity = "0.5";
+    link.style.cursor = "not-allowed";
+    link.style.pointerEvents = "none";
+    link.setAttribute("aria-disabled", "true");
+  }
+
+  // ALUNO: pode entrar só no aluno
   if (tipo === "aluno") {
-    if (menuProfessor) menuProfessor.style.display = "none";
-    if (cardProfessor) cardProfessor.style.display = "none";
+    bloquearBotao(btnProfessor);
+    bloquearLink(linkProfessorNav);
+
+    if (btnAluno) {
+      btnAluno.addEventListener("click", function () {
+        window.location.href = "aluno.html";
+      });
+    }
+  }
+
+  // PROFESSOR: pode entrar só no professor
+  if (tipo === "professor") {
+    bloquearBotao(btnAluno);
+    bloquearLink(linkAlunoNav);
+
+    if (btnProfessor) {
+      btnProfessor.addEventListener("click", function () {
+        window.location.href = "professor.html";
+      });
+    }
   }
 });

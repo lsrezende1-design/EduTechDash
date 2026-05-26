@@ -1,4 +1,11 @@
+
 document.addEventListener("DOMContentLoaded", function () {
+
+  const tipo = localStorage.getItem("tipoUsuario");
+
+  // ✅ bloqueio inteligente (SEM quebrar o código)
+  
+
 
   /* =====================================
      ELEMENTOS DO DOM

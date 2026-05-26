@@ -1,4 +1,11 @@
+
 document.addEventListener("DOMContentLoaded", function () {
+
+  const tipo = localStorage.getItem("tipoUsuario");
+
+ 
+
+});
 
   /* =====================================
      DADOS INICIAIS
