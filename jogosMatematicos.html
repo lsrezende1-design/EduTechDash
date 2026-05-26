@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+    content="width=device-width, initial-scale=1.0">
+
+    <title>Jogos Matemáticos</title>
+
+    <link rel="stylesheet"
+    href="style.css">
+
+</head>
+
+<body>
+
+<div class="container page-layout" id="dashboard">
+
+    <!-- HEADER -->
+
+    <header class="glass">
+
+
+        <div class="logo">
+
+            <h1>
+                Jogos Matemáticos
+            </h1>
+
+            <p>
+                Aprendizado interativo
+            </p>
+
+        </div>
+
+         <nav>
+
+                <ul>
+
+                    <li>
+                        <a href="index.html">
+                            Página Principal
+                        </a>
+                    </li>
+
+                   
+                </ul>
+
+            </nav>
+
+            <button onclick="logout()">Sair</button>
+    </header>
+
+    
+        
+
+    </section>
+
+    <!-- CARDS -->
+
+    <section class="cards">
+
+        <!-- TABUADA -->
+
+        <div class="card glass">
+
+            <h3>
+                Central de Desafios - Tabuada
+            </h3>
+
+            <p id="pergunta">
+                Carregando pergunta...
+            </p>
+
+            <input
+                type="number"
+                id="respostaAluno"
+                placeholder="Digite a resposta"
+            >
+
+            <button
+                id="btnVerificar"
+                type="button"
+            >
+                Verificar
+            </button>
+
+            <p id="resultado"></p>
+
+            <p id="tempo"></p>
+
+        </div>
+
+        <!-- QUIZ -->
+
+        <div class="card glass">
+
+            <h3>
+                Quiz Matemático
+            </h3>
+
+            <p>
+                Responda perguntas e acumule pontos.
+            </p>
+
+            <p id="perguntaQuiz">
+                Carregando pergunta...
+            </p>
+
+            <div class="quiz-opcoes">
+
+                <button class="opcao"></button>
+
+                <button class="opcao"></button>
+
+                <button class="opcao"></button>
+
+                <button class="opcao"></button>
+
+            </div>
+
+            <p id="resultadoQuiz"></p>
+
+            <p id="pontuacaoQuiz">
+                Pontos: 0
+            </p>
+
+        </div>
+
+        
+    </section>
+
+</div>
+
+<script src="tabuadaTurbo.js"></script>
+
+<script src="quizMatematico.js"></script>
+<script src="logout.js"></script>
+
+</body>
+
+</html>

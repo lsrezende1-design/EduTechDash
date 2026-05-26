@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contato</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="container page-layout" id="dashboard">
+
+    <!-- HEADER -->
+    <header class="glass">
+        <div class="logo">
+            <h1>Contato</h1>
+            <p>Fale conosco</p>
+        </div>
+         <nav>
+
+                <ul>
+
+                    <li>
+                        <a href="index.html">
+                            Página Principal
+                        </a>
+                    </li>
+
+                   
+                </ul>
+
+            </nav>
+
+            <button onclick="logout()">Sair</button>
+    </header>
+
+        
+
+    </section>
+
+    <!-- CONTEÚDO -->
+    <section class="cards">
+
+        <div class="card glass">
+
+            <h3>Informações de Contato</h3>
+            <p>Entre em contato conosco para dúvidas, sugestões ou suporte.</p>
+
+     <div class="info-contato">
+        <p><strong>Email:</strong> contato@edutech.com</p>
+        <p><strong>Telefone:</strong> (11) 1234-5678</p>
+    </div>
+    </div>
+
+    <!-- ✅ FORMULÁRIO -->
+    <div class="card glass">
+        <h3>Envie sua Mensagem</h3>
+        <p>Preencha o formulário abaixo e entraremos em contato.</p>
+        <form id="formContato"> 
+        <input
+            type="text"
+            id="nomeContato"
+            placeholder="Seu nome"
+            required
+        >
+
+        <input
+            type="email"
+            id="emailContato"
+            placeholder="Seu e-mail"
+            required
+        >
+
+        <textarea
+            id="mensagemContato"
+            placeholder="Digite sua mensagem"
+            rows="4"
+            required
+        ></textarea>
+
+        <button type="submit">
+            Enviar Mensagem
+        </button>
+
+    </form>
+
+    <p id="mensagemContatoResposta"></p>
+
+</div>
+
+
+
+    <p id="mensagemContatoResposta"></p>
+
+</div>
+
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="glass" id="rodape">
+        <p> © 2026 EduTech Dash - Transformando a Educação</p>
+    </footer>
+
+</div>
+
+</body>
+<script src="contato.js"></script>
+<script src="logout.js"></script>
+</html>

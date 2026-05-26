@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Área do Aluno</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container page-layout" id="dashboard">
+
+<header class="glass">
+    <div class="logo">
+        <h1>Área do Aluno</h1>
+        <p>Seu ambiente de estudos</p>
+    </div>
+     <nav>
+
+                <ul>
+
+                    <li>
+                        <a href="index.html">
+                            Página Principal
+                        </a>
+                    </li>
+
+                   
+                </ul>
+
+            </nav>
+
+            <button onclick="logout()">Sair</button>
+</header>
+
+
+
+<section class="cards">
+
+<div class="card glass">
+
+    <h3>
+        Cadastro do Aluno
+    </h3>
+
+    <p>
+        Atualize seus dados escolares.
+    </p>
+
+    <form id="cadastroAluno">
+
+        <input
+            type="text"
+            id="nomeAluno"
+            placeholder="Nome completo"
+            required
+        >
+
+        <input
+            type="email"
+            id="emailAluno"
+            placeholder="Email"
+            required
+        >
+
+        <input
+            type="tel"
+            id="telefoneAluno"
+            placeholder="Telefone"
+            required
+        >
+
+        <button type="submit">
+
+            Salvar Cadastro
+
+        </button>
+
+    </form>
+
+    <p id="mensagemCadastro"></p>
+
+</div>
+
+
+<div class="card glass">
+
+      <h3>Boletim Escolar</h3>
+
+    <p>Informe seu nome para consultar seu desempenho.</p>
+
+    <form id="formBoletimAluno">
+  <input
+    type="text"
+    id="nomeConsultaAluno"
+    placeholder="Digite seu nome"
+    required
+  >
+  <button type="submit">Consultar Boletim</button>
+</form>
+
+<p id="mensagemBoletim"></p>
+
+<div id="boletimAluno">
+  <p>Carregando boletim...</p>
+</div>
+
+</div>
+
+<div class="card glass">
+    
+  <h3>Simulador de Recuperação Semestral</h3>
+
+  <p>
+    Informe suas notas para verificar se já está aprovado ou quanto precisa na recuperação.
+  </p>
+
+  <input
+    type="number"
+    id="nota1Rec"
+    placeholder="Nota 1"
+    step="0.01"
+  >
+
+  <input
+    type="number"
+    id="nota2Rec"
+    placeholder="Nota 2"
+    step="0.01"
+  >
+
+  <button id="btnRecuperacao">
+    Calcular Resultado
+  </button>
+
+  <p id="resultadoRec"></p>
+
+</div>
+   
+</div>
+
+<div class="card glass">
+    <h3>Agenda</h3>
+    <p>Calendário de provas e eventos.</p>
+    <button>Acessar</button>
+</div>
+
+</section>
+
+<footer class="glass" id="rodape">
+    <p>© 2026 EduTech Dash - Transformando a Educação</p>
+</footer>
+
+</div>
+
+</body>
+<script src="cadastro.js"></script>
+<script src="boletim.js"></script>
+<script src="recSemestral.js"></script>
+<script src="logout.js"></script>
+<script src="auth.js"></script>
+</html>

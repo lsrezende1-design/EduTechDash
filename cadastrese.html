@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Cadastro de Usuário</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <h2>Cadastro</h2>
+
+  <form id="formCadastro">
+
+    <input type="text" id="nome" placeholder="Nome" required><br><br>
+
+    <input type="text" id="login" placeholder="Login" required><br><br>
+
+    <input type="password" id="senha" placeholder="Senha" required><br><br>
+
+    <!-- SELEÇÃO DE PERFIL -->
+    <select id="tipoUsuario" required>
+      <option value="">Selecione o tipo</option>
+      <option value="professor">Professor</option>
+      <option value="aluno">Aluno</option>
+    </select><br><br>
+
+    <button type="submit">Cadastrar</button>
+
+  </form>
+
+  <p id="mensagem"></p>
+
+
+</body>
+<script src="cadastrese.js"></script>
+</html>

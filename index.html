@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>EduTech Dash</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+    <!-- ===================================
+         TELA DE LOGIN
+    ==================================== -->
+
+    <div class="login-screen glass" id="loginScreen">
+
+        <h1>EduTech Dash</h1>
+
+        <p>
+            Bem-vindo ao ambiente educacional EduTech Dash! Faça login para acessar uma plataforma moderna e interativa, repleta de recursos para alunos e professores. Desenvolvida para transformar a experiência educacional, nossa plataforma oferece atividades, jogos, acompanhamento escolar e muito mais. Entre agora e descubra um novo mundo de aprendizado inteligente e divertido!
+        </p>
+
+        <form id="loginForm">
+
+            
+<input 
+    type="text"
+    id="usuario"
+    placeholder="Usuário"
+    required
+>
+
+<input
+    type="password"
+    id="senha"
+    placeholder="Senha"
+    required
+>
+
+<select id="tipoUsuario" required>
+    <option value="">Selecione o tipo</option>
+    <option value="professor">Professor</option>
+    <option value="aluno">Aluno</option>
+</select>
+
+            <button type="submit">
+                Entrar no Sistema
+            </button>
+            
+
+        </form>
+
+    </div>
+
+    <!-- ===================================
+         DASHBOARD PRINCIPAL
+    ==================================== -->
+
+    <div class="container dashboard" id="dashboard">
+
+        <!-- HEADER -->
+
+        <header class="glass">
+
+            <div class="logo">
+
+                <h1>EduTech Dash</h1>
+
+                <p>
+                    Educação Inteligente e Interativa
+                </p>
+
+            </div>
+
+            <!-- MENU -->
+
+            <nav>
+
+                <ul>
+
+                    
+
+                    <li>
+                        <a href="professor.html">
+                            Área do Professor
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="aluno.html">
+                            Área do Aluno
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="jogosMatematicos.html">
+                            Jogos Matemáticos
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="biblioteca.html">
+                            Biblioteca
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="contato.html">
+                            Contato
+                        </a>
+                    </li>
+
+                </ul>
+
+            </nav>
+
+            <button onclick="logout()">Sair</button>
+        </header>
+
+        <!-- MAIN -->
+
+        <main>
+
+            <!-- HERO -->
+
+            <section class="hero glass">
+
+                <h2>
+                    O futuro da educação começa aqui
+                </h2>
+
+                <p>
+                    Uma plataforma moderna para alunos e professores,
+                    com atividades interativas, jogos educativos,
+                    acompanhamento escolar e aprendizado inteligente.
+                </p>
+
+                
+            </section>
+
+            <!-- CARDS -->
+
+            <section class="cards">
+
+                <!-- CARD 1 -->
+
+                <div class="card glass">
+
+                    <h3">
+                        Jogos Matemáticos
+                    </h3>
+
+                    <p>
+                        Desafios interativos para desenvolver lógica,
+                        raciocínio matemático e agilidade mental.
+                    </p>
+
+                        <button onclick="window.location.href='jogosMatematicos.html'">
+                            Acessar Jogos
+                        </button>
+
+                </div>
+
+                <!-- CARD 2 -->
+
+                <div class="card glass">
+
+                    <h3>
+                        Área do Professor
+                    </h3>
+
+                    <p>
+                        Controle de notas, gerenciamento de atividades,
+                        upload de materiais e comunicação com alunos.
+                    </p>
+
+                    
+<button id="btnProfessor" onclick="window.location.href='professor.html'">
+    Abrir Painel
+</button>
+
+
+                </div>
+
+                <!-- CARD 3 -->
+
+                <div class="card glass">
+
+                    <h3>
+                        Área do Aluno
+                    </h3>
+
+                    <p>
+                        Consulte tarefas, acompanhe desempenho,
+                        visualize conteúdos e participe das aulas.
+                    </p>
+
+                    
+<button id="btnAluno" onclick="window.location.href='aluno.html'">
+    Abrir Painel
+</button>
+
+
+                </div>
+
+                <!-- CARD 4 -->
+
+                <div class="card glass">
+
+                    <h3>
+                        Biblioteca Digital
+                    </h3>
+
+                    <p>
+                        Materiais de estudo, apostilas, vídeos,
+                        exercícios e conteúdos complementares.
+                    </p>
+
+                    <button onclick="window.location.href='biblioteca.html'">
+                        Explorar
+                    </button>
+
+                </div>
+
+                
+                <!-- CARD 5 -->
+
+                <div class="card glass">
+
+                    <h3>
+                        Eventos e Avisos
+                    </h3>
+
+                    <p>
+                        Acompanhe comunicados importantes,
+                        calendário escolar e próximos eventos.
+                    </p>
+
+                    <button onclick="window.location.href='eventos.html'">
+                        Ver Avisos
+                    </button>
+
+                </div>
+
+            </section>
+
+        </main>
+
+        <!-- FOOTER -->
+
+        <footer class="glass" id="rodape">
+
+            <p>
+                © 2026 EduTech Dash - Transformando a Educação
+            </p>
+
+            <p>
+                Desenvolvido para transformar a experiência educacional
+            </p>
+
+        </footer>
+
+    </div>
+
+    <script src="loginform.js" ></script>
+    <script src="logout.js"></script>
+  
+   <script src="dashboard-role.js"></script>
+   
+        
+
+</body>
+
+</html>
