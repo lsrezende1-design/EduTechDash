@@ -1,11 +1,4 @@
-
 document.addEventListener("DOMContentLoaded", function () {
-
-  const tipo = localStorage.getItem("tipoUsuario");
-
-  // ✅ bloqueio inteligente (SEM quebrar o código)
-  
-
 
   /* =====================================
      ELEMENTOS DO DOM
@@ -15,8 +8,8 @@ document.addEventListener("DOMContentLoaded", function () {
   const boletimAluno = document.getElementById("boletimAluno");
   const mensagemBoletim = document.getElementById("mensagemBoletim");
 
-  // ✅ proteção: se a página não tiver esse formulário, não roda
-  if (!formBoletimAluno) return;
+  // Proteção: se a página não tiver esse formulário, não roda
+  if (!formBoletimAluno || !nomeConsultaAluno || !boletimAluno || !mensagemBoletim) return;
 
   /* =====================================
      MAP GLOBAL DE STATUS
@@ -85,11 +78,36 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   /* =====================================
-     BUSCA POR NOME
+     FUNÇÃO: CARREGAR ALUNOS
+  ===================================== */
+  function carregarAlunos() {
+    const dadosSalvos = localStorage.getItem("alunos");
+
+    if (!dadosSalvos) {
+      return [];
+    }
+
+    try {
+      const alunos = JSON.parse(dadosSalvos);
+
+      if (!Array.isArray(alunos)) {
+        return [];
+      }
+
+      return alunos;
+    } catch {
+      return [];
+    }
+  }
+
+  /* =====================================
+     BUSCA EXATA POR NOME
   ===================================== */
   function buscarAlunoPorNome(nomeDigitado, alunos) {
+    const nomeFormatado = nomeDigitado.toLowerCase().trim();
+
     for (let i = 0; i < alunos.length; i++) {
-      if (alunos[i].nome.toLowerCase().includes(nomeDigitado.toLowerCase())) {
+      if (alunos[i].nome.toLowerCase().trim() === nomeFormatado) {
         return alunos[i];
       }
     }
@@ -101,6 +119,15 @@ document.addEventListener("DOMContentLoaded", function () {
      RENDERIZA O BOLETIM
   ===================================== */
   function renderizarBoletim(aluno) {
+    // Validação defensiva da estrutura
+    if (!aluno.notas || !Array.isArray(aluno.notas) || aluno.notas.length < 3) {
+      throw new Error("As notas do aluno estão incompletas.");
+    }
+
+    if (typeof aluno.presencas !== "number" || typeof aluno.totalAulas !== "number" || aluno.totalAulas <= 0) {
+      throw new Error("Os dados de frequência do aluno estão inválidos.");
+    }
+
     const pesos = [2, 3, 5];
     const media = calcularMediaPonderada(aluno.notas, pesos);
     const frequencia = calcularFrequencia(aluno.presencas, aluno.totalAulas);
@@ -112,17 +139,17 @@ document.addEventListener("DOMContentLoaded", function () {
       <div class="linha-boletim">
         <h4>${aluno.nome}</h4>
 
-        <p>Nota 1: ${aluno.notas[0].toFixed(2)}</p>
-        <p>Nota 2: ${aluno.notas[1].toFixed(2)}</p>
-        <p>Nota 3: ${aluno.notas[2].toFixed(2)}</p>
+        <p>Nota 1: ${Number(aluno.notas[0]).toFixed(2)}</p>
+        <p>Nota 2: ${Number(aluno.notas[1]).toFixed(2)}</p>
+        <p>Nota 3: ${Number(aluno.notas[2]).toFixed(2)}</p>
 
         <p>Média Ponderada: ${media.toFixed(2)}</p>
         <p>Frequência: ${frequencia.toFixed(2)}%</p>
         <p>Status: ${statusExtenso}</p>
         <p>Conceito: ${conceito}</p>
 
-        <p>Telefone do responsável: ${aluno.contato?.telefone ?? "Não informado"}</p>
-        <p>E-mail do responsável: ${aluno.contato?.email ?? "Não informado"}</p>
+        <p>Telefone do responsável: ${aluno.contato?.telefone?.trim() || "Não informado"}</p>
+        <p>E-mail do responsável: ${aluno.contato?.email?.trim() || "Não informado"}</p>
       </div>
     `;
   }
@@ -140,16 +167,11 @@ document.addEventListener("DOMContentLoaded", function () {
         throw new Error("Digite o nome do aluno.");
       }
 
-      const dadosSalvos = localStorage.getItem("alunos");
+      // SEMPRE pega os dados atualizados na hora da consulta
+      const alunos = carregarAlunos();
 
-      if (!dadosSalvos) {
-        throw new Error("Nenhum aluno foi encontrado no painel do professor.");
-      }
-
-      const alunos = JSON.parse(dadosSalvos);
-
-      if (!Array.isArray(alunos) || alunos.length === 0) {
-        throw new Error("A lista de alunos está vazia.");
+      if (alunos.length === 0) {
+        throw new Error("Nenhum aluno foi encontrado no sistema.");
       }
 
       const aluno = buscarAlunoPorNome(nome, alunos);

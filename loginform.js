@@ -39,7 +39,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
       loginScreen.style.display = "none";
       dashboard.style.display = "block";
-
+      aplicarRegrasDashboard();
       if (mensagem) {
         mensagem.innerText = "";
       }

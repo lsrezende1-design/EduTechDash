@@ -56,14 +56,14 @@
             
 
         </form>
-
+        <p id="mensagem"></p>
     </div>
 
     <!-- ===================================
          DASHBOARD PRINCIPAL
     ==================================== -->
 
-    <div class="container dashboard" id="dashboard">
+    <div class="container dashboard" id="dashboard" style="display: none;">
 
         <!-- HEADER -->
 
@@ -89,15 +89,15 @@
 
                     
 <li>
-    <a href="professor.html" id="linkProfessorNav">
-        Área do Professor
-    </a>
+    <a href="professor.html" id="linkProfessorNav" aria-label="Área do Professor">
+        Área do Professor </a> 
 </li>
 
 <li>
-    <a href="aluno.html" id="linkAlunoNav">
-        Área do Aluno
-    </a>
+    <a href="aluno.html" id="linkAlunoNav" aria-label="Área do Aluno">  
+        Área do Aluno </a>
+        
+    
 </li>
 
 
@@ -155,7 +155,7 @@
 
                 <div class="card glass">
 
-                    <h3">
+                    <h3>
                         Jogos Matemáticos
                     </h3>
 
@@ -164,9 +164,7 @@
                         raciocínio matemático e agilidade mental.
                     </p>
 
-                        <button onclick="window.location.href='jogosMatematicos.html'">
-                            Acessar Jogos
-                        </button>
+                        <button id="btnJogos">Acessar Jogos</button>
 
                 </div>
 
@@ -184,9 +182,7 @@
                     </p>
 
                     
-<button id="btnProfessor" >
-    Abrir Painel
-</button>
+                    <button id="btnProfessor" >Abrir Painel</button>
 
 
                 </div>
@@ -205,9 +201,7 @@
                     </p>
 
                     
-<button id="btnAluno" >
-    Abrir Painel
-</button>
+                    <button id="btnAluno" >Abrir Painel</button>
 
 
                 </div>
@@ -225,9 +219,7 @@
                         exercícios e conteúdos complementares.
                     </p>
 
-                    <button onclick="window.location.href='biblioteca.html'">
-                        Explorar
-                    </button>
+                    <button id="btnBiblioteca">Explorar</button>
 
                 </div>
 
@@ -245,9 +237,7 @@
                         calendário escolar e próximos eventos.
                     </p>
 
-                    <button onclick="window.location.href='eventos.html'">
-                        Ver Avisos
-                    </button>
+                    <button id="btnEventos">Ver Avisos</button>
 
                 </div>
 

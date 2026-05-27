@@ -1,5 +1,9 @@
 document.addEventListener("DOMContentLoaded", function () {
-  const logado = localStorage.getItem("logado");
+  aplicarRegrasDashboard();
+});
+
+function aplicarRegrasDashboard() {
+
   const tipo = localStorage.getItem("tipoUsuario");
 
   const btnProfessor = document.getElementById("btnProfessor");
@@ -8,22 +12,13 @@ document.addEventListener("DOMContentLoaded", function () {
   const linkProfessorNav = document.getElementById("linkProfessorNav");
   const linkAlunoNav = document.getElementById("linkAlunoNav");
 
-  // Se não estiver logado, mantém só a tela de login
-  const loginScreen = document.getElementById("loginScreen");
-  const dashboard = document.getElementById("dashboard");
+  const btnJogos = document.getElementById("btnJogos");
+  const btnBiblioteca = document.getElementById("btnBiblioteca");
+  const btnEventos = document.getElementById("btnEventos");
 
-  if (logado !== "true") {
-    if (loginScreen && dashboard) {
-      loginScreen.style.display = "block";
-      dashboard.style.display = "none";
-    }
-    return;
-  }
-
-  if (loginScreen && dashboard) {
-    loginScreen.style.display = "none";
-    dashboard.style.display = "block";
-  }
+  // =========================
+  // FUNÇÕES
+  // =========================
 
   function bloquearBotao(botao) {
     if (!botao) return;
@@ -34,38 +29,49 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function bloquearLink(link) {
     if (!link) return;
-
-    // remove a navegação
     link.removeAttribute("href");
-
-    // visual de desabilitado
+    link.style.pointerEvents = "none";
     link.style.opacity = "0.5";
     link.style.cursor = "not-allowed";
-    link.style.pointerEvents = "none";
-    link.setAttribute("aria-disabled", "true");
   }
 
-  // ALUNO: pode entrar só no aluno
+  // =========================
+  // AÇÕES LIVRES (todos acessam)
+  // =========================
+
+  if (btnJogos) {
+    btnJogos.onclick = () => window.location.href = "jogosMatematicos.html";
+  }
+
+  if (btnBiblioteca) {
+    btnBiblioteca.onclick = () => window.location.href = "biblioteca.html";
+  }
+
+  if (btnEventos) {
+    btnEventos.onclick = () => window.location.href = "eventos.html";
+  }
+
+  // =========================
+  // CONTROLE POR TIPO
+  // =========================
+
   if (tipo === "aluno") {
+
     bloquearBotao(btnProfessor);
     bloquearLink(linkProfessorNav);
 
     if (btnAluno) {
-      btnAluno.addEventListener("click", function () {
-        window.location.href = "aluno.html";
-      });
+      btnAluno.onclick = () => window.location.href = "aluno.html";
     }
   }
 
-  // PROFESSOR: pode entrar só no professor
   if (tipo === "professor") {
+
     bloquearBotao(btnAluno);
     bloquearLink(linkAlunoNav);
 
     if (btnProfessor) {
-      btnProfessor.addEventListener("click", function () {
-        window.location.href = "professor.html";
-      });
+      btnProfessor.onclick = () => window.location.href = "professor.html";
     }
   }
-});
+}

@@ -1,11 +1,4 @@
-
 document.addEventListener("DOMContentLoaded", function () {
-
-  const tipo = localStorage.getItem("tipoUsuario");
-
- 
-
-});
 
   /* =====================================
      DADOS INICIAIS
@@ -45,8 +38,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
   /* =====================================
      ARRAY GLOBAL DE ALUNOS
-     - se já existir localStorage, usa ele
-     - se não existir, usa os alunos iniciais
   ===================================== */
   const dadosSalvos = localStorage.getItem("alunos");
 
@@ -72,16 +63,18 @@ document.addEventListener("DOMContentLoaded", function () {
   const buscaAluno = document.getElementById("buscaAluno");
   const mensagemProfessor = document.getElementById("mensagemProfessor");
 
+  // Proteção contra erro caso a página não tenha esses elementos
+  if (!formProfessor || !listaAlunos || !buscaAluno || !mensagemProfessor) return;
+
   /* =====================================
      FUNÇÕES DE PERSISTÊNCIA
-     - necessário para o aluno ver o boletim
   ===================================== */
   function salvarAlunos() {
     localStorage.setItem("alunos", JSON.stringify(alunos));
   }
 
   /* =====================================
-     FUNÇÃO PURA: CALCULAR MÉDIA PONDERADA
+     FUNÇÕES PURAS
   ===================================== */
   function calcularMediaPonderada(notas, pesos) {
     let somaNotas = 0;
@@ -95,16 +88,10 @@ document.addEventListener("DOMContentLoaded", function () {
     return somaNotas / somaPesos;
   }
 
-  /* =====================================
-     FUNÇÃO PURA: CALCULAR FREQUÊNCIA
-  ===================================== */
   function calcularFrequencia(presencas, totalAulas) {
     return (presencas / totalAulas) * 100;
   }
 
-  /* =====================================
-     FUNÇÃO PURA: DEFINIR STATUS
-  ===================================== */
   function definirStatus(media, frequencia) {
     if (media >= 7 && frequencia >= 75) {
       return "APR";
@@ -117,9 +104,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  /* =====================================
-     FUNÇÃO PURA: DEFINIR CONCEITO
-  ===================================== */
   function definirConceito(media) {
     let faixa = "";
 
@@ -145,9 +129,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  /* =====================================
-     FUNÇÃO: BUSCA LINEAR
-  ===================================== */
   function buscarAlunosPorNome(termo) {
     const encontrados = [];
 
@@ -160,17 +141,10 @@ document.addEventListener("DOMContentLoaded", function () {
     return encontrados;
   }
 
-  /* =====================================
-     FUNÇÃO: NORMALIZAR DECIMAL
-     aceita vírgula ou ponto
-  ===================================== */
   function normalizarDecimal(valorTexto) {
     return valorTexto.replace(",", ".");
   }
 
-  /* =====================================
-     FUNÇÃO: VALIDAR ATÉ 2 CASAS DECIMAIS
-  ===================================== */
   function validarDuasCasasDecimais(valorTexto) {
     const valorNormalizado = normalizarDecimal(valorTexto);
     const partes = valorNormalizado.split(".");
@@ -183,8 +157,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   /* =====================================
-     FUNÇÃO: RENDERIZAR LISTA
-     usa for-of
+     RENDERIZAÇÃO
   ===================================== */
   function renderizarAlunos(listaRecebida = alunos) {
     listaAlunos.innerHTML = "";
@@ -218,8 +191,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   /* =====================================
-     SUBMISSÃO COM ATUALIZAÇÃO PARCIAL
-     - não apaga os demais campos
+     SUBMISSÃO DO FORMULÁRIO
   ===================================== */
   formProfessor.addEventListener("submit", function (event) {
     event.preventDefault();
@@ -231,8 +203,6 @@ document.addEventListener("DOMContentLoaded", function () {
       const nota3Texto = document.getElementById("nota3").value.trim();
       const presencasTexto = document.getElementById("presencas").value.trim();
       const totalAulasTexto = document.getElementById("totalAulas").value.trim();
-      const telefoneResponsavel = document.getElementById("telefoneResponsavel").value.trim();
-      const emailResponsavel = document.getElementById("emailResponsavel").value.trim();
 
       if (nome === "") {
         throw new Error("Informe o nome do aluno.");
@@ -243,9 +213,7 @@ document.addEventListener("DOMContentLoaded", function () {
         nota2Texto !== "" ||
         nota3Texto !== "" ||
         presencasTexto !== "" ||
-        totalAulasTexto !== "" ||
-        telefoneResponsavel !== "" ||
-        emailResponsavel !== "";
+        totalAulasTexto !== "";
 
       if (!algumCampoPreenchido) {
         throw new Error("Preencha ao menos um campo para cadastrar ou atualizar.");
@@ -265,25 +233,11 @@ document.addEventListener("DOMContentLoaded", function () {
       const presencas = presencasTexto !== "" ? parseInt(presencasTexto, 10) : null;
       const totalAulas = totalAulasTexto !== "" ? parseInt(totalAulasTexto, 10) : null;
 
-      if (nota1Texto !== "" && isNaN(nota1)) {
-        throw new Error("Nota 1 inválida.");
-      }
-
-      if (nota2Texto !== "" && isNaN(nota2)) {
-        throw new Error("Nota 2 inválida.");
-      }
-
-      if (nota3Texto !== "" && isNaN(nota3)) {
-        throw new Error("Nota 3 inválida.");
-      }
-
-      if (presencasTexto !== "" && isNaN(presencas)) {
-        throw new Error("Presenças inválidas.");
-      }
-
-      if (totalAulasTexto !== "" && isNaN(totalAulas)) {
-        throw new Error("Total de aulas inválido.");
-      }
+      if (nota1Texto !== "" && isNaN(nota1)) throw new Error("Nota 1 inválida.");
+      if (nota2Texto !== "" && isNaN(nota2)) throw new Error("Nota 2 inválida.");
+      if (nota3Texto !== "" && isNaN(nota3)) throw new Error("Nota 3 inválida.");
+      if (presencasTexto !== "" && isNaN(presencas)) throw new Error("Presenças inválidas.");
+      if (totalAulasTexto !== "" && isNaN(totalAulas)) throw new Error("Total de aulas inválido.");
 
       if (
         (nota1 !== null && (nota1 < 0 || nota1 > 10)) ||
@@ -312,25 +266,11 @@ document.addEventListener("DOMContentLoaded", function () {
          CADASTRA OU ATUALIZA SEM APAGAR DEMAIS
       ===================================== */
       if (alunoEncontrado) {
-        if (nota1 !== null) {
-          alunoEncontrado.notas[0] = nota1;
-        }
-
-        if (nota2 !== null) {
-          alunoEncontrado.notas[1] = nota2;
-        }
-
-        if (nota3 !== null) {
-          alunoEncontrado.notas[2] = nota3;
-        }
-
-        if (presencas !== null) {
-          alunoEncontrado.presencas = presencas;
-        }
-
-        if (totalAulas !== null) {
-          alunoEncontrado.totalAulas = totalAulas;
-        }
+        if (nota1 !== null) alunoEncontrado.notas[0] = nota1;
+        if (nota2 !== null) alunoEncontrado.notas[1] = nota2;
+        if (nota3 !== null) alunoEncontrado.notas[2] = nota3;
+        if (presencas !== null) alunoEncontrado.presencas = presencas;
+        if (totalAulas !== null) alunoEncontrado.totalAulas = totalAulas;
 
         if (
           alunoEncontrado.presencas < 0 ||
@@ -338,14 +278,6 @@ document.addEventListener("DOMContentLoaded", function () {
           alunoEncontrado.presencas > alunoEncontrado.totalAulas
         ) {
           throw new Error("As presenças não podem ser menores que zero nem maiores que o total de aulas.");
-        }
-
-        if (telefoneResponsavel !== "") {
-          alunoEncontrado.contato.telefone = telefoneResponsavel;
-        }
-
-        if (emailResponsavel !== "") {
-          alunoEncontrado.contato.email = emailResponsavel;
         }
 
         mensagemProfessor.innerText = "Aluno atualizado com sucesso!";
@@ -360,8 +292,8 @@ document.addEventListener("DOMContentLoaded", function () {
           presencas: presencas !== null ? presencas : 0,
           totalAulas: totalAulas !== null ? totalAulas : 1,
           contato: {
-            telefone: telefoneResponsavel,
-            email: emailResponsavel
+            telefone: "",
+            email: ""
           }
         };
 
@@ -373,11 +305,7 @@ document.addEventListener("DOMContentLoaded", function () {
         mensagemProfessor.innerText = "Aluno cadastrado com sucesso!";
       }
 
-      /* =====================================
-         SALVA PARA O PAINEL DO ALUNO
-      ===================================== */
       salvarAlunos();
-
       renderizarAlunos();
       formProfessor.reset();
 
@@ -401,7 +329,7 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   /* =====================================
-     RENDERIZA E SALVA AO CARREGAR
+     CARGA INICIAL
   ===================================== */
   renderizarAlunos();
   salvarAlunos();

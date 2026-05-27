@@ -6,158 +6,159 @@
     <title>Área do Aluno</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<body style="visibility: hidden;">
 
+<body style="visibility: hidden;">
 
 <div class="container page-layout" id="dashboard">
 
-<header class="glass">
-    <div class="logo">
-        <h1>Área do Aluno</h1>
-        <p>Seu ambiente de estudos</p>
-    </div>
-     <nav>
+    <!-- HEADER -->
+    <header class="glass">
+        <div class="logo">
+            <h1>Área do Aluno</h1>
+            <p>Seu ambiente de estudos</p>
+        </div>
 
-                <ul>
+        <nav>
+            <ul>
+                <li>
+                    <a href="index.html">Página Principal</a>
+                </li>
+            </ul>
+        </nav>
 
-                    <li>
-                        <a href="index.html">
-                            Página Principal
-                        </a>
-                    </li>
+        <button onclick="logout()">Sair</button>
+    </header>
 
-                   
-                </ul>
+    <!-- CONTEÚDO -->
+    <section class="cards">
 
-            </nav>
+        <!-- ✅ CARD 1: CADASTRO DO ALUNO -->
+        <div class="card glass">
 
-            <button onclick="logout()">Sair</button>
-</header>
+            <h3>Cadastro do Aluno</h3>
 
+            <p>Atualize o telefone e o e-mail do responsável.</p>
 
+            <form id="cadastroAluno">
 
-<section class="cards">
+                <input
+                    type="text"
+                    id="nomeAluno"
+                    placeholder="Nome completo"
+                    required
+                >
 
-<div class="card glass">
+                <input
+                    type="email"
+                    id="emailAluno"
+                    placeholder="E-mail do responsável"
+                    required
+                >
 
-    <h3>
-        Cadastro do Aluno
-    </h3>
+                <input
+                    type="tel"
+                    id="telefoneAluno"
+                    placeholder="Telefone do responsável"
+                    required
+                >
 
-    <p>
-        Atualize seus dados escolares.
-    </p>
+                <button type="submit">
+                    Salvar Cadastro
+                </button>
 
-    <form id="cadastroAluno">
+            </form>
 
-        <input
-            type="text"
-            id="nomeAluno"
-            placeholder="Nome completo"
-            required
-        >
+            <p id="mensagemCadastro"></p>
 
-        <input
-            type="email"
-            id="emailAluno"
-            placeholder="Email"
-            required
-        >
+        </div>
 
-        <input
-            type="tel"
-            id="telefoneAluno"
-            placeholder="Telefone"
-            required
-        >
+        <!-- ✅ CARD 2: BOLETIM -->
+        <div class="card glass">
 
-        <button type="submit">
+            <h3>Boletim Escolar</h3>
 
-            Salvar Cadastro
+            <p>Informe seu nome para consultar seu desempenho.</p>
 
-        </button>
+            <form id="formBoletimAluno">
 
-    </form>
+                <input
+                    type="text"
+                    id="nomeConsultaAluno"
+                    placeholder="Digite seu nome"
+                    required
+                >
 
-    <p id="mensagemCadastro"></p>
+                <button type="submit">
+                    Consultar Boletim
+                </button>
+
+            </form>
+
+            <p id="mensagemBoletim"></p>
+
+            <div id="boletimAluno">
+                <p>Digite seu nome e clique em consultar</p>
+            </div>
+
+        </div>
+
+        <!-- ✅ CARD 3: SIMULADOR -->
+        <div class="card glass">
+
+            <h3>Simulador de Recuperação Semestral</h3>
+
+            <p>
+                Informe suas notas para verificar se já está aprovado ou quanto precisa na recuperação.
+            </p>
+
+            <input
+                type="number"
+                id="nota1Rec"
+                placeholder="Nota 1"
+                step="0.01"
+            >
+
+            <input
+                type="number"
+                id="nota2Rec"
+                placeholder="Nota 2"
+                step="0.01"
+            >
+
+            <button id="btnRecuperacao">
+                Calcular Resultado
+            </button>
+
+            <p id="resultadoRec"></p>
+
+        </div>
+
+        <!-- ✅ CARD 4: AGENDA -->
+        <div class="card glass">
+
+            <h3>Agenda</h3>
+
+            <p>Calendário de provas e eventos.</p>
+
+            <button>Acessar</button>
+
+        </div>
+
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="glass" id="rodape">
+        <p>© 2026 EduTech Dash - Transformando a Educação</p>
+    </footer>
 
 </div>
 
-
-<div class="card glass">
-
-      <h3>Boletim Escolar</h3>
-
-    <p>Informe seu nome para consultar seu desempenho.</p>
-
-    <form id="formBoletimAluno">
-  <input
-    type="text"
-    id="nomeConsultaAluno"
-    placeholder="Digite seu nome"
-    required
-  >
-  <button type="submit">Consultar Boletim</button>
-</form>
-
-<p id="mensagemBoletim"></p>
-
-<div id="boletimAluno">
-  <p>Carregando boletim...</p>
-</div>
-
-</div>
-
-<div class="card glass">
-    
-  <h3>Simulador de Recuperação Semestral</h3>
-
-  <p>
-    Informe suas notas para verificar se já está aprovado ou quanto precisa na recuperação.
-  </p>
-
-  <input
-    type="number"
-    id="nota1Rec"
-    placeholder="Nota 1"
-    step="0.01"
-  >
-
-  <input
-    type="number"
-    id="nota2Rec"
-    placeholder="Nota 2"
-    step="0.01"
-  >
-
-  <button id="btnRecuperacao">
-    Calcular Resultado
-  </button>
-
-  <p id="resultadoRec"></p>
-
-</div>
-   
-</div>
-
-<div class="card glass">
-    <h3>Agenda</h3>
-    <p>Calendário de provas e eventos.</p>
-    <button>Acessar</button>
-</div>
-
-</section>
-
-<footer class="glass" id="rodape">
-    <p>© 2026 EduTech Dash - Transformando a Educação</p>
-</footer>
-
-</div>
-
-</body>
+<!-- ✅ SCRIPTS (ORDEM CORRETA) -->
+<script src="auth.js"></script>
 <script src="cadastro.js"></script>
 <script src="boletim.js"></script>
 <script src="recSemestral.js"></script>
 <script src="logout.js"></script>
-<script src="auth.js"></script>
+
+</body>
 </html>

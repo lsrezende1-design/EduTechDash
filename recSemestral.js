@@ -1,33 +1,40 @@
-const btnRecuperacao = document.getElementById("btnRecuperacao");
-const resultadoRec = document.getElementById("resultadoRec");
+document.addEventListener("DOMContentLoaded", function () {
 
-btnRecuperacao.addEventListener("click", function () {
+  const btnRecuperacao = document.getElementById("btnRecuperacao");
+  const resultadoRec = document.getElementById("resultadoRec");
 
-  let nota1 = parseFloat(document.getElementById("nota1Rec").value);
-  let nota2 = parseFloat(document.getElementById("nota2Rec").value);
+  if (!btnRecuperacao || !resultadoRec) return;
 
-  if (isNaN(nota1) || isNaN(nota2)) {
-    resultadoRec.innerText = "Informe notas válidas.";
-    return;
-  }
+  btnRecuperacao.addEventListener("click", function () {
 
-  let mediaAtual = (nota1 + nota2) / 2;
+    const nota1 = parseFloat(document.getElementById("nota1Rec").value);
+    const nota2 = parseFloat(document.getElementById("nota2Rec").value);
 
-  // ✅ já aprovado
-  if (mediaAtual >= 6.5) {
-    resultadoRec.innerText = `✅ Nota em dia! Você já tem média ${mediaAtual.toFixed(2)}.`;
-    return;
-  }
+    if (isNaN(nota1) || isNaN(nota2)) {
+      resultadoRec.innerText = "❌ Informe notas válidas.";
+      return;
+    }
 
-  // ✅ cálculo correto (SUA FÓRMULA)
-  let x = 13 - mediaAtual;
+    const mediaAtual = (nota1 + nota2) / 2;
 
-  if (x > 10) {
-    resultadoRec.innerText = "❌ Mesmo com 10 na recuperação, não atinge média 6.5.";
-  } else if (x <= 0) {
-    resultadoRec.innerText = "✅ Você já atingiu a média.";
-  } else {
-    resultadoRec.innerText = `📌 Você precisa tirar ${x.toFixed(2)} na recuperação.`;
-  }
+    // ✅ já aprovado
+    if (mediaAtual >= 6.5) {
+      resultadoRec.innerText = `✅ Você já está aprovado com média ${mediaAtual.toFixed(2)}.`;
+      return;
+    }
+
+    // ✅ cálculo da recuperação
+    const notaNecessaria = 13 - mediaAtual;
+
+    if (notaNecessaria > 10) {
+      resultadoRec.innerText = "❌ Mesmo com 10 na recuperação, não é possível atingir média 6.5.";
+    } else if (notaNecessaria <= 0) {
+      resultadoRec.innerText = "✅ Você já atingiu a média.";
+    } else {
+      resultadoRec.innerText = `📌 Você precisa tirar ${notaNecessaria.toFixed(2)} na recuperação.`;
+    }
+
+  });
 
 });
+``

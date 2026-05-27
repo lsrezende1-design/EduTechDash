@@ -8,7 +8,6 @@
 </head>
 <body style="visibility: hidden;">
 
-
   <div class="container page-layout" id="dashboard">
 
     <header class="glass">
@@ -17,46 +16,36 @@
         <p>Gerenciamento educacional</p>
       </div>
 
-       <nav>
+      <nav>
+        <ul>
+          <li>
+            <a href="index.html">
+              Página Principal
+            </a>
+          </li>
+        </ul>
+      </nav>
 
-                <ul>
-
-                    <li>
-                        <a href="index.html">
-                            Página Principal
-                        </a>
-                    </li>
-
-                   
-                </ul>
-
-            </nav>
-
-            <button onclick="logout()">Sair</button>
+      <button onclick="logout()">Sair</button>
     </header>
-
-    
 
     <section class="cards">
 
       <!-- CARD 1: CADASTRO E LANÇAMENTO -->
       <div class="card glass">
         <h3>Cadastro e Lançamento</h3>
-        <p>Cadastre alunos, lance notas, presenças e dados do responsável.</p>
+        <p>Cadastre alunos e lance notas, presenças e total de aulas.</p>
 
         <form id="formProfessor">
 
-        <input type="text" id="nomeAluno" placeholder="Nome do aluno" required>
+          <input type="text" id="nomeAluno" placeholder="Nome do aluno" required>
 
-        <input type="text" id="nota1" placeholder="Nota 1">
-        <input type="text" id="nota2" placeholder="Nota 2">
-        <input type="text" id="nota3" placeholder="Nota 3">
+          <input type="text" id="nota1" placeholder="Nota 1">
+          <input type="text" id="nota2" placeholder="Nota 2">
+          <input type="text" id="nota3" placeholder="Nota 3">
 
-        <input type="number" id="presencas" placeholder="Presenças">
-        <input type="number" id="totalAulas" placeholder="Total de aulas">
-
-        <input type="text" id="telefoneResponsavel" placeholder="Telefone do responsável">
-        <input type="email" id="emailResponsavel" placeholder="E-mail do responsável">
+          <input type="number" id="presencas" placeholder="Presenças">
+          <input type="number" id="totalAulas" placeholder="Total de aulas">
 
           <button type="submit">
             Cadastrar / Atualizar
@@ -70,7 +59,7 @@
       <!-- CARD 2: PAINEL DE ALUNOS -->
       <div class="card glass">
         <h3>Painel de Alunos</h3>
-        <p>Busque alunos e acompanhe média, frequência, conceito e status.</p>
+        <p>Busque alunos e acompanhe média, frequência, conceito, status e contato do responsável.</p>
 
         <input
           type="text"
@@ -81,7 +70,7 @@
         <div id="listaAlunos"></div>
       </div>
 
-     </section>
+    </section>
 
     <footer class="glass" id="rodape">
       <p>© 2026 EduTech Dash - Transformando a Educação</p>
@@ -89,8 +78,8 @@
 
   </div>
 
+  <script src="auth.js"></script>
   <script src="professor.js"></script>
-<script src="logout.js"></script>
-<script src="auth.js"></script>
+  <script src="logout.js"></script>
 </body>
 </html>

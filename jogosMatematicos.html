@@ -1,145 +1,113 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
-
-    <meta charset="UTF-8">
-
-    <meta name="viewport"
-    content="width=device-width, initial-scale=1.0">
-
-    <title>Jogos Matemáticos</title>
-
-    <link rel="stylesheet"
-    href="style.css">
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jogos Matemáticos</title>
+  <link rel="stylesheet" href="style.css">
 </head>
+<body style="visibility: hidden;">
 
-<body>
+>
 
-<div class="container page-layout" id="dashboard">
-
-    <!-- HEADER -->
+  <div class="container page-layout" id="dashboard">
 
     <header class="glass">
+      <div class="logo">
+        <h1>Jogos Matemáticos</h1>
+        <p>Aprendizado interativo</p>
+      </div>
 
+      <nav>
+        <ul>
+          <li>
+            <a href="index.html">Página Principal</a>
+          </li>
+        </ul>
+      </nav>
 
-        <div class="logo">
-
-            <h1>
-                Jogos Matemáticos
-            </h1>
-
-            <p>
-                Aprendizado interativo
-            </p>
-
-        </div>
-
-         <nav>
-
-                <ul>
-
-                    <li>
-                        <a href="index.html">
-                            Página Principal
-                        </a>
-                    </li>
-
-                   
-                </ul>
-
-            </nav>
-
-            <button onclick="logout()">Sair</button>
+      <button onclick="logout()">Sair</button>
     </header>
 
-    
-        
-
+    <!-- ABAS -->
+    <section class="glass abas-jogos">
+     
     </section>
 
-    <!-- CARDS -->
-
+    <!-- JOGOS -->
     <section class="cards">
 
-        <!-- TABUADA -->
+      <!-- TABUADA -->
+      <div class="card glass box-jogo ativo" id="tabuadaBox">
+        <h3>Central de Desafios - Tabuada</h3>
 
-        <div class="card glass">
+        <p id="perguntaTabuada">Carregando pergunta...</p>
 
-            <h3>
-                Central de Desafios - Tabuada
-            </h3>
+        <input
+          type="number"
+          id="respostaAluno"
+          placeholder="Digite a resposta"
+        >
 
-            <p id="pergunta">
-                Carregando pergunta...
-            </p>
+        <button id="btnVerificar" type="button">
+          Verificar
+        </button>
 
-            <input
-                type="number"
-                id="respostaAluno"
-                placeholder="Digite a resposta"
-            >
+        <p id="resultadoTabuada"></p>
+        <p id="tempoTabuada"></p>
+      </div>
 
-            <button
-                id="btnVerificar"
-                type="button"
-            >
-                Verificar
-            </button>
+      <!-- QUIZ MATEMÁTICO -->
+      <div class="card glass box-jogo" id="quizMatematicaBox">
+        <h3>Quiz Matemático</h3>
+        <p>Responda 4 perguntas por rodada.</p>
 
-            <p id="resultado"></p>
+        <p id="perguntaMatematica">Carregando pergunta...</p>
 
-            <p id="tempo"></p>
-
+        <div class="quiz-opcoes-mat">
+          <button class="opcao-mat"></button>
+          <button class="opcao-mat"></button>
+          <button class="opcao-mat"></button>
+          <button class="opcao-mat"></button>
         </div>
 
-        <!-- QUIZ -->
+        <p id="resultadoMatematica"></p>
+        <p id="pontuacaoMatematica">Pontos: 0</p>
+      </div>
 
-        <div class="card glass">
+      <!-- RACIOCÍNIO LÓGICO -->
+      <div class="card glass box-jogo" id="logicaBox">
+        <h3>Quiz de Raciocínio Lógico</h3>
+        <p>Responda 4 perguntas por rodada.</p>
 
-            <h3>
-                Quiz Matemático
-            </h3>
+        <p id="perguntaLogica">Carregando pergunta...</p>
 
-            <p>
-                Responda perguntas e acumule pontos.
-            </p>
-
-            <p id="perguntaQuiz">
-                Carregando pergunta...
-            </p>
-
-            <div class="quiz-opcoes">
-
-                <button class="opcao"></button>
-
-                <button class="opcao"></button>
-
-                <button class="opcao"></button>
-
-                <button class="opcao"></button>
-
-            </div>
-
-            <p id="resultadoQuiz"></p>
-
-            <p id="pontuacaoQuiz">
-                Pontos: 0
-            </p>
-
+        <div class="quiz-opcoes-logica">
+          <button class="opcao-logica"></button>
+          <button class="opcao-logica"></button>
+          <button class="opcao-logica"></button>
+          <button class="opcao-logica"></button>
         </div>
 
-        
+        <p id="resultadoLogica"></p>
+        <p id="pontuacaoLogica">Pontos: 0</p>
+      </div>
+
     </section>
 
-</div>
+    <footer class="glass" id="rodape">
+      <p>© 2026 EduTech Dash - Transformando a Educação</p>
+    </footer>
 
+  </div>
+
+  
+<script src="auth.js"></script>
 <script src="tabuadaTurbo.js"></script>
-
 <script src="quizMatematico.js"></script>
+<script src="desafioLogico.js"></script>
 <script src="logout.js"></script>
 
-</body>
 
+</body>
 </html>
