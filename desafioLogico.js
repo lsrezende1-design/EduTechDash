@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", function () {
     },
     {
       pergunta: "Qual palavra não pertence ao grupo? Maçã, Banana, Cenoura, Uva",
-      opcoes: ["Maçã", "Banana", "Cenoura", "Uva"],
+      opcoes: ["Maçã", "Macaco", "Cenoura", "Uva"],
       correta: "Cenoura"
     },
     {
